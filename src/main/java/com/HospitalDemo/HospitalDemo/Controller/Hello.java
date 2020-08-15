@@ -10,9 +10,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:1998"})
+//@CrossOrigin(origins = {"http://localhost:3000"})
 
-//@CrossOrigin(origins = { "http://localhost:1998", "http://localhost:4200" })
+//@CrossOrigin(origins = { "http://localhost:1998", "http://localhost:3000" })
 @RestController
 public class Hello {
 
@@ -41,6 +41,21 @@ public class Hello {
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @DeleteMapping("/deletepatients/{id}")
+    public ResponseEntity<Void> deletePatient(@PathVariable long id) {
+        Patient deletePatient = patientDataService.deleteById(id);
+        if (deletePatient != null) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/getpatients/{id}")
+    public Patient getPatient( @PathVariable long id) {
+        return patientDataService.findById(id);
+    }
+
 
     @RequestMapping("/hello")
     public String show(){

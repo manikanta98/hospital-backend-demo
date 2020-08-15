@@ -31,7 +31,26 @@ public class PatientDataService {
 
     }
 
-
-
-
+    public Patient findById(long id) {
+        for (Patient patient: Patients) {
+            if (patient.getId() == id) {
+                return patient;
+            }
+        }
+        return null;
     }
+
+    public Patient deleteById(Long id) {
+        Patient patient = findById(id);
+        if (patient == null)
+            return null;
+        if (Patients.remove(patient)) {
+            return patient;
+        }
+        return null;
+    }
+
+
+
+
+}
