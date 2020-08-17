@@ -10,8 +10,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-//@CrossOrigin(origins = {"http://localhost:3000"})
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 //@CrossOrigin(origins = { "http://localhost:1998", "http://localhost:3000" })
 @RestController
 public class Hello {
@@ -25,6 +25,7 @@ public class Hello {
 //        }
 //
 //    }
+
 
     @Autowired
     private PatientDataService patientDataService;
@@ -41,6 +42,7 @@ public class Hello {
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
+
 
     @DeleteMapping("/deletepatients/{id}")
     public ResponseEntity<Void> deletePatient(@PathVariable long id) {
