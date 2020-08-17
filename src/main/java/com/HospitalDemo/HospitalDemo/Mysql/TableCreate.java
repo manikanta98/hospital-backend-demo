@@ -19,11 +19,11 @@ public class TableCreate {
     public static void main(String[] args) {
 
         try (Connection conn = DriverManager.getConnection(
-                "jdbc:postgresql://127.0.0.1:49276/browser/", "postgres", "mani");
+                "jdbc:postgresql://172.17.0.2:5432/postgres", "postgres", "tiger");
 
              Statement statement = conn.createStatement()) {
 
-            // if DDL failed, it will raise an SQLException
+            // if DDL failed, it will raise an SQLExceptiong
             statement.execute(SQL_CREATE);
 
         } catch (SQLException e) {
