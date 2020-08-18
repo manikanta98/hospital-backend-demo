@@ -1,5 +1,4 @@
 package com.HospitalDemo.HospitalDemo.Mysql;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,17 +18,20 @@ public class TableCreate {
     public static void main(String[] args) {
 
         try (Connection conn = DriverManager.getConnection(
-                "jdbc:postgresql://172.17.0.2:5432/postgres", "postgres", "tiger");
+                "jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "mano");
 
              Statement statement = conn.createStatement()) {
 
             // if DDL failed, it will raise an SQLExceptiong
             statement.execute(SQL_CREATE);
+            System.out.println("table created");
 
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+            System.out.println("error");
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("error");
         }
 
     }

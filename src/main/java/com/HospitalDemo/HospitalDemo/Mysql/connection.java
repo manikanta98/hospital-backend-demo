@@ -19,7 +19,7 @@ public class connection {
 
         // auto close connection
         try (Connection conn = DriverManager.getConnection(
-                "jdbc:postgresql://127.0.0.1:53551/browser/", "postgres", "mani")) {
+                "jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "mano")) {
 
             if (conn != null) {
                 System.out.println("Connected to the database!");
