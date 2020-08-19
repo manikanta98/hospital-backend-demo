@@ -1,7 +1,9 @@
 package com.HospitalDemo.HospitalDemo.Controller;
 
 import com.HospitalDemo.HospitalDemo.Entity.Patient;
+import com.HospitalDemo.HospitalDemo.Entity.PatientModel;
 import com.HospitalDemo.HospitalDemo.Service.PatientDataService;
+import com.HospitalDemo.HospitalDemo.repositry.PatientsRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +33,14 @@ public class Hello {
     private PatientDataService patientDataService;
 
     @GetMapping("/getpatients")
-    public List<Patient> getAllPatinets(){
-        return patientDataService.findAll();
-    }
+//    public List<Patient> getAllPatinets(){
+//
+//        return patientDataService.findAll();
+//    }
+    public List<PatientModel> getAllPatinets(){
+
+        return PatientsRepositry.findAll();
+   }
 
     @PostMapping("/addpatient")
     public ResponseEntity<Void> createPatient(@RequestBody Patient patient ){

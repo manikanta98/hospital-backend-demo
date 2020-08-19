@@ -3,6 +3,7 @@ package com.HospitalDemo.HospitalDemo.records;
 import java.sql.*;
 
 public class RowSelect {
+
     private static final String SQL_SELECT = "SELECT * FROM PATIENTS";
 
     public static void main(String[] args) {
@@ -12,7 +13,7 @@ public class RowSelect {
              PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECT)) {
 
             ResultSet resultSet = preparedStatement.executeQuery();
-//            System.out.println("Resultset :" +resultSet);
+
 
             while (resultSet.next()) {
 
@@ -27,6 +28,7 @@ public class RowSelect {
                 int height = resultSet.getInt("height");
                 int weight = resultSet.getInt("weight");
                 String facility = resultSet.getString("facility");
+
                 System.out.println(id);
                 System.out.println(firstName);
                 System.out.println(lastName);
@@ -35,6 +37,8 @@ public class RowSelect {
                 System.out.println(height);
                 System.out.println(weight);
                 System.out.println(facility);
+
+
 
             }
 
@@ -46,4 +50,6 @@ public class RowSelect {
         }
 
     }
+
+
 }
