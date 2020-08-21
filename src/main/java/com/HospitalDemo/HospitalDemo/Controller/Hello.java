@@ -1,15 +1,12 @@
 package com.HospitalDemo.HospitalDemo.Controller;
 
 import com.HospitalDemo.HospitalDemo.Entity.Patient;
-import com.HospitalDemo.HospitalDemo.Entity.PatientModel;
-import com.HospitalDemo.HospitalDemo.Service.PatientDataService;
-import com.HospitalDemo.HospitalDemo.repositry.PatientsRepositry;
+import com.HospitalDemo.HospitalDemo.repositry.PatientRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
 import java.util.List;
 
 
@@ -18,64 +15,13 @@ import java.util.List;
 @RestController
 public class Hello {
 
-//    @Autowired
-//    private data PatientDataService ;
-//    @GetMapping("/patients")
-//    public List<Patient> getAllPatients(){
-//        return{
-//                data.findAll();
-//        }
-//
-//    }
-
-
     @Autowired
-    private PatientDataService patientDataService;
+   // private PatientDataService patientDataService;
 
     @GetMapping("/getpatients")
-//    public List<Patient> getAllPatinets(){
-//
-//        return patientDataService.findAll();
-//    }
-    public List<PatientModel> getAllPatinets(){
+    public List<Patient> getAllPatinets(){
 
-        return PatientsRepositry.findAll();
+      return PatientRepositry.getPatients();
    }
-
-    @PostMapping("/addpatient")
-    public ResponseEntity<Void> createPatient(@RequestBody Patient patient ){
-        Patient createPatient = patientDataService.save(patient);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createPatient.getId())
-                .toUri();
-        return ResponseEntity.created(uri).build();
-    }
-
-
-    @DeleteMapping("/deletepatients/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable long id) {
-        Patient deletePatient = patientDataService.deleteById(id);
-        if (deletePatient != null) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
-
-    @GetMapping("/getpatients/{id}")
-    public Patient getPatient( @PathVariable long id) {
-        return patientDataService.findById(id);
-    }
-
-
-    @RequestMapping("/hello")
-    public String show(){
-        return "hello";
-    }
-
-    @RequestMapping("/hi")
-    public String showHi(){
-        return "Hello Manikanta";
-    }
-
-
 
 }
