@@ -1,5 +1,6 @@
 package com.HospitalDemo.HospitalDemo.Service;
 
+import com.HospitalDemo.HospitalDemo.Controller.PatientController;
 import com.HospitalDemo.HospitalDemo.Entity.Patient;
 import com.HospitalDemo.HospitalDemo.Dao.PatientDao;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PatientDataService {
 
-    public static Patient save(Patient patient) {
+    public static Patient save(PatientController patient) {
 
         PatientDao.addPatient(patient);
 

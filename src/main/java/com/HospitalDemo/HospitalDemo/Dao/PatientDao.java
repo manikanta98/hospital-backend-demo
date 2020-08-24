@@ -73,7 +73,7 @@ public class PatientDao {
 
             try (Connection conn = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/postgres", "postgres", "mano");
-                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_UPDATE)) {
+                 PreparedStatement preparedStatement = conn.prepareStatement(SQL_INSERT)) {
 
                 preparedStatement.setString(1, patient.getFirst_name());
                 preparedStatement.setString(2, patient.getLast_name());
@@ -127,7 +127,7 @@ public class PatientDao {
 
     }
 
-    public static void deletePatient(Integer id){
+    public static List<Patient> deletePatient(Integer id){
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/postgres", "postgres", "mano");
              PreparedStatement preparedStatement = conn.prepareStatement(SQL_DELETE)) {
@@ -145,9 +145,11 @@ public class PatientDao {
             e.printStackTrace();
         }
 
+        return patients;
     }
 
     public static List<Patient> getPatientById(Integer id){
+        patient = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:postgresql://localhost:5432/postgres", "postgres", "mano");
              PreparedStatement preparedStatement = conn.prepareStatement(SQL_SELECTBY_ID)) {
@@ -181,6 +183,7 @@ public class PatientDao {
                 patient.add(obj);
                 System.out.println(obj);
             }
+
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         } catch (Exception e) {
