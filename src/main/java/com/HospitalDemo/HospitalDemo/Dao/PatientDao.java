@@ -68,7 +68,7 @@ public class PatientDao {
         return patients;
     }
 
-    public static void addPatient(Patient patient){
+    public static String addPatient(Patient patient){
         {
 
             try (Connection conn = DriverManager.getConnection(
@@ -94,10 +94,11 @@ public class PatientDao {
             }
 
         }
+        return "patient Added";
 
     }
 
-    public static void updatePatient(Integer id, Patient patient){
+    public static Integer updatePatient(Integer id, Patient patient){
         {
 
             try (Connection conn = DriverManager.getConnection(
@@ -124,6 +125,7 @@ public class PatientDao {
             }
 
         }
+        return id;
 
     }
 

@@ -17,8 +17,7 @@ import java.util.List;
 @RestController
 public class PatientController extends Patient {
 
-    //@Autowired
-    // private PatientDataService patientDataService;
+
     @Autowired
     private PatientService patientService;
 
@@ -56,19 +55,10 @@ public class PatientController extends Patient {
     }
 
 
+    @GetMapping("/getPatientsyById/{id}")
+    public List<Patient> getPatientById(@PathVariable Integer id) {
 
-   @GetMapping("/getPatientsyById/{id}")
-  public List<Patient> getPatientById(@PathVariable Integer id){
+        return patientService.findById(id);
+    }
 
-//      List<Patient>getPatientById  = patientService.findById(id);
-//      if (getPatientById != null) {
-//           return ResponseEntity.noContent().build();
-//        }
-       return patientService.findById(id);
-}
-//    @GetMapping("/getPatientsyById/{id}")
-//    public List<Patient> getPatient( @PathVariable long id) {
-//        return patientService.findById(id);
-//    }
-//
 }
